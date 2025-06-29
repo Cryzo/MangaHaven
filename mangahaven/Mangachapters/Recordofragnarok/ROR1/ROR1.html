@@ -1,0 +1,104 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Record of Ragnarok - Chapter 1</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+    }
+
+    .back-button, .nav-button, .scroll-button {
+      background-color: #ffa500;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .manga-panel {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .scroll-button {
+      display: block;
+      margin: 0 auto 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Back to Synopsis -->
+  <a class="back-button" href="../../../manga/Recordofragnarok.html">&larr; Back to Manga Page</a>
+
+  <!-- Top Navigation to Other Chapters -->
+  <div class="nav-buttons">
+    <span></span>
+    <a class="nav-button" href="../ROR2/ROR2.html">Next Chapter &rarr;</a>
+  </div>
+
+  <!-- Auto-Scroll Button -->
+  <button class="scroll-button" onclick="startAutoScroll()">▶️ Auto-Scroll</button>
+
+  <!-- Manga Panels -->
+  <div id="panels"></div>
+
+  <!-- Bottom Navigation to Other Chapters -->
+  <div class="nav-buttons">
+    <span></span>
+    <a class="nav-button" href="../ROR2/ROR2.html">Next Chapter &rarr;</a>
+  </div>
+
+  <script>
+    // Load 66 manga panels dynamically
+    const container = document.getElementById('panels');
+    for (let i = 1; i <= 66; i++) {
+      const img = document.createElement('img');
+      img.src = `Images/RORCH1P${i}.webp`;
+      img.alt = `Panel ${i}`;
+      img.className = 'manga-panel';
+      container.appendChild(img);
+    }
+
+    // Smooth auto-scroll
+    let autoScrollInterval = null;
+
+    function startAutoScroll() {
+      if (autoScrollInterval) return; // Prevent multiple scroll intervals
+
+      autoScrollInterval = setInterval(() => {
+        window.scrollBy({
+          top: 3, // scroll speed (1px per step)
+          left: 0,
+          behavior: 'smooth'
+        });
+
+        // Stop if we've reached bottom
+        if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+          clearInterval(autoScrollInterval);
+          autoScrollInterval = null;
+        }
+      }, 20); // scroll every 20ms
+    }
+  </script>
+
+</body>
+</html>
